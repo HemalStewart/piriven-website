@@ -47,21 +47,24 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
 
             {/* Logo */}
             <div className="flex items-center group">
-              <img
-  src="/images/logo.png"
-  alt="Ministry Logo"
-  className="h-16 w-auto hover:scale-110 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-xl"
-/>
-
-            </div>
+  <a href="/">
+    <img
+      src="/images/logo.png"
+      alt="Ministry Logo"
+      className="h-16 w-auto hover:scale-110 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-xl"
+    />
+  </a>
+</div>
           </div>
 
           {/* Center Title */}
           <div className="hidden md:block">
-            <h1 className="text-gray-800 font-bold hover:text-transparent hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-500 hover:bg-clip-text text-xl transition-all duration-500 cursor-default transform hover:scale-105">
-              PDMS
-            </h1>
-          </div>
+  <a href="https://pdms.moe.gov.lk/" target="_blank" rel="noopener noreferrer">
+    <h1 className="text-gray-800 font-bold hover:text-transparent hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-500 hover:bg-clip-text text-xl transition-all duration-500 cursor-pointer transform hover:scale-105">
+      PDMS
+    </h1>
+  </a>
+</div>
 
           {/* Right - Language + Search */}
           <div className="hidden md:flex flex-col items-end space-y-2">
