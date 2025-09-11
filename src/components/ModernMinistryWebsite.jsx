@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+
 import { ChevronLeft, ChevronRight, BookOpen, Users, GraduationCap, Search, Calendar, ExternalLink } from 'lucide-react';
 import { Header } from './Header';
 import { MobileMenu } from './MobileMenu';
@@ -198,12 +199,12 @@ const ModernMinistryWebsite = () => {
         </section>
 
         {/* News Section */}
-        <section 
+        <section
           id="news"
           data-animate
           className={`grid grid-cols-1 lg:grid-cols-3 gap-16 py-20 transition-all duration-1000 transform ${
-            sectionsVisible.news 
-              ? 'translate-y-0 opacity-100' 
+            sectionsVisible.news
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
           }`}
         >
@@ -224,19 +225,21 @@ const ModernMinistryWebsite = () => {
               ))}
             </div>
             <div className="flex justify-center space-x-4">
-              <button 
+              {/* Previous Button - Matching HeroSlider Style */}
+              <button
                 onClick={() => setNewsSlide((prev) => Math.max(0, prev - 1))}
-                className="bg-gray-200 hover:bg-gray-300 p-3 rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                className="group bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/10 text-white p-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:hover:scale-100"
                 disabled={newsSlide === 0}
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />
               </button>
-              <button 
+              {/* Next Button - Matching HeroSlider Style */}
+              <button
                 onClick={() => setNewsSlide((prev) => Math.min(Math.floor(newsItems.length / 3) - 1, prev + 1))}
-                className="bg-gray-200 hover:bg-gray-300 p-3 rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                className="group bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/10 text-white p-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:opacity-50 disabled:hover:scale-100"
                 disabled={newsSlide >= Math.floor(newsItems.length / 3) - 1}
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
             <div className="text-center mt-8">

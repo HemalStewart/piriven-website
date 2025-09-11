@@ -33,16 +33,22 @@ export const MainNavigation = () => {
                   {/* Icon hover tilt */}
                   <Icon
                     className={`w-5 h-5 transition-transform duration-300 ${
-                      active ? 'text-yellow-300' : 'group-hover:-rotate-12 group-hover:scale-110'
+                      active
+                        ? 'text-yellow-300 rotate-0'
+                        : 'group-hover:-rotate-12 group-hover:scale-110'
                     }`}
                   />
                   <span>{label}</span>
                 </Link>
 
-                {/* Active underline only (no hover) */}
-                {active && (
-                  <span className="absolute left-0 bottom-0 h-[3px] w-full bg-yellow-400 animate-underline"></span>
-                )}
+                {/* Underline */}
+                <span
+                  className={`absolute left-0 bottom-0 h-[3px] w-full transform origin-left transition-transform duration-500 ${
+                    active
+                      ? 'scale-x-100 bg-yellow-400 animate-underline'
+                      : 'scale-x-0 bg-yellow-300 group-hover:scale-x-100'
+                  }`}
+                ></span>
               </li>
             );
           })}
@@ -59,7 +65,6 @@ export const MainNavigation = () => {
           }
         }
         .animate-underline {
-          transform-origin: left;
           animation: underline-grow 0.4s ease-out forwards;
         }
       `}</style>

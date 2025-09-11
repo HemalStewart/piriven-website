@@ -1,56 +1,143 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Calendar } from 'lucide-react';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export const CalendarComponent = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <button className="text-gray-500 hover:text-black border border-gray-300 hover:border-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
-          &lt; PREV
-        </button>
-        <h3 className="font-bold text-xl text-gray-800">
-          SEPTEMBER 2025
-        </h3>
-        <button className="text-gray-500 hover:text-black border border-gray-300 hover:border-gray-600 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300">
-          NEXT &gt;
-        </button>
+dayjs.extend(isBetween);
+
+// Dummy news data
+const DUMMY_EVENTS = [
+  { date: '2025-09-05', title: 'Tech Conference' },
+  { date: '2025-09-12', title: 'Product Launch' },
+  { date: '2025-09-18', title: 'Company Meeting' },
+  { date: '2025-09-25', title: 'Team Building Day' },
+  { date: '2025-10-02', title: 'Q4 Planning Session' },
+  { date: '2025-10-15', title: 'Marketing Workshop' },
+  { date: '2025-11-10', title: 'Annual Holiday Party' },
+];
+
+export const CalendarComponent = () => {
+  const [currentDate, setCurrentDate] = useState(dayjs('2025-09-11'));
+
+  const handlePrevMonth = () => {
+    setCurrentDate(currentDate.subtract(1, 'month'));
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(currentDate.add(1, 'month'));
+  };
+
+  // Get days for the calendar grid
+  const daysInMonth = useMemo(() => {
+    const startOfMonth = currentDate.startOf('month');
+    const endOfMonth = currentDate.endOf('month');
+    const startOfGrid = startOfMonth.startOf('week');
+    const endOfGrid = endOfMonth.endOf('week');
+    
+    const days = [];
+    let currentDay = startOfGrid;
+    
+    while (currentDay.isBefore(endOfGrid) || currentDay.isSame(endOfGrid)) {
+      days.push(currentDay);
+      currentDay = currentDay.add(1, 'day');
+    }
+    
+    return days;
+  }, [currentDate]);
+
+  // Filter events for the current month
+  const currentMonthEvents = useMemo(() => {
+    return DUMMY_EVENTS.filter(event => 
+      dayjs(event.date).isBetween(currentDate.startOf('month'), currentDate.endOf('month'), 'day', '[]')
+    );
+  }, [currentDate]);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <div className="flex justify-between items-center mb-6">
+          {/* Prev Month Button */}
+          <button
+            onClick={handlePrevMonth}
+            className="group bg-black/5 hover:bg-black/10 backdrop-blur-sm border border-gray-200 text-black p-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          >
+            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-300" />
+          </button>
+          <h3 className="font-bold text-xl text-gray-800 uppercase">
+            {currentDate.format('MMMM YYYY')}
+          </h3>
+          {/* Next Month Button */}
+          <button
+            onClick={handleNextMonth}
+            className="group bg-black/5 hover:bg-black/10 backdrop-blur-sm border border-gray-200 text-black p-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          >
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+          </button>
+        </div>
+        <div className="grid grid-cols-7 text-center text-xs text-gray-500 font-semibold mb-4">
+          <span className="py-2">SU</span>
+          <span className="py-2">MO</span>
+          <span className="py-2">TU</span>
+          <span className="py-2">WE</span>
+          <span className="py-2">TH</span>
+          <span className="py-2">FR</span>
+          <span className="py-2">SA</span>
+        </div>
+        <div className="grid grid-cols-7 text-center text-sm gap-1">
+          {daysInMonth.map((day, index) => {
+            const isToday = day.isSame(dayjs(), 'day');
+            const hasEvent = currentMonthEvents.some(event => day.isSame(dayjs(event.date), 'day'));
+            const isCurrentMonth = day.isSame(currentDate, 'month');
+
+            return (
+              <button
+                key={index}
+                className={`py-3 rounded-lg transition-all duration-300 relative flex items-center justify-center
+                  ${isCurrentMonth
+                    ? 'text-gray-700 hover:bg-gray-100 hover:text-black'
+                    : 'text-gray-400 cursor-not-allowed'
+                  }
+                `}
+                disabled={!isCurrentMonth}
+              >
+                {/* Event or Today marker */}
+                {isToday && (
+                  <span className="absolute w-10 h-10 rounded-full bg-red-700 opacity-80"></span>
+                )}
+                {!isToday && hasEvent && isCurrentMonth && (
+                  <span className="absolute w-10 h-10 rounded-full bg-yellow-500 opacity-80"></span>
+                )}
+                <span className={`relative z-10 font-medium ${isToday ? 'text-white' : ''}`}>
+                  {day.format('D')}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div className="grid grid-cols-7 text-center text-xs text-gray-500 font-semibold mb-4">
-        <span className="py-2">MO</span>
-        <span className="py-2">TU</span>
-        <span className="py-2">WE</span>
-        <span className="py-2">TH</span>
-        <span className="py-2">FR</span>
-        <span className="py-2">SA</span>
-        <span className="py-2">SU</span>
-      </div>
-      <div className="grid grid-cols-7 text-center text-sm gap-1">
-        {Array.from({ length: 30 }, (_, i) => {
-          const day = i + 1;
-          const isToday = day === 10;
-          return (
-            <button
-              key={day}
-              className={`py-3 rounded-lg transition-all duration-300 hover:bg-blue-50 ${
-                isToday 
-                  ? 'bg-blue-500 text-white font-bold hover:bg-blue-600' 
-                  : 'text-gray-700 hover:text-blue-600'
-              }`}
-            >
-              {day}
-            </button>
-          );
-        })}
+      <div className="border-l border-gray-200 pl-8">
+        <h4 className="font-semibold text-gray-500 text-sm mb-6 uppercase tracking-wider">
+          EVENTS FOR {currentDate.format('MMMM').toUpperCase()}
+        </h4>
+        {currentMonthEvents.length > 0 ? (
+          <ul className="space-y-4">
+            {currentMonthEvents.map((event, index) => (
+              <li key={index} className="p-4 bg-gray-50 rounded-lg shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <p className="text-xs text-gray-500 mb-1">{dayjs(event.date).format('MMMM D, YYYY')}</p>
+                <p className="font-semibold text-gray-800">{event.title}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="text-center text-gray-400 py-12">
+            <Calendar className="w-16 h-16 mx-auto mb-4 opacity-50" />
+            <p className="text-lg">No Events</p>
+          </div>
+        )}
       </div>
     </div>
-    <div className="border-l border-gray-200 pl-8">
-      <h4 className="font-semibold text-gray-500 text-sm mb-6 uppercase tracking-wider">
-        EVENTS FOR SEPTEMBER
-      </h4>
-      <div className="text-center text-gray-400 py-12">
-        <Calendar className="w-16 h-16 mx-auto mb-4 opacity-50" />
-        <p className="text-lg">No Events</p>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
+
+export default CalendarComponent;
