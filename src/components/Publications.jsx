@@ -3,9 +3,15 @@ import React from 'react';
 export const PublicationsSection = () => (
   <div>
     <h2 className="text-4xl font-bold text-gray-800 mb-8">Latest Publications</h2>
-    <div className="flex space-x-6">
+    {/* Responsive Flex Container:
+      - flex-col: Stacks items vertically on mobile by default.
+      - md:flex-row: Switches to a horizontal row layout on medium screens and up.
+      - space-y-4: Adds vertical space between items on mobile.
+      - md:space-x-6: Overrides the vertical space and adds horizontal space on medium screens and up.
+    */}
+    <div className="flex flex-col md:flex-row space-y-4 md:space-x-6">
       {/* First Publication */}
-      <div>
+      <div className="w-full">
         <a href="#" className="block w-full h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
           <img 
             src="/images/publications1.jpg" 
@@ -17,7 +23,7 @@ export const PublicationsSection = () => (
       </div>
 
       {/* Second Publication */}
-      <div>
+      <div className="w-full">
         <a href="#" className="block w-full h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
           <img 
             src="/images/publications2.jpg" 
