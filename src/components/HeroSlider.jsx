@@ -16,7 +16,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % mainSlides.length);
-    }, 7000);
+    }, 17000);
     return () => clearInterval(interval);
   }, [mainSlides.length, setCurrentSlide]);
 

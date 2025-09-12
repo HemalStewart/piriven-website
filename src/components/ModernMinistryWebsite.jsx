@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-import { ChevronLeft, ChevronRight, BookOpen, Users, GraduationCap, Search, Calendar, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Users, GraduationCap, Search } from 'lucide-react';
 import { Header } from './Header';
 import { MobileMenu } from './MobileMenu';
 import { HeroSlider } from './HeroSlider';
@@ -81,7 +82,6 @@ const ModernMinistryWebsite = () => {
   ];
 
   useEffect(() => {
-    // Simulate loading time
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
     }, 200);
@@ -94,7 +94,6 @@ const ModernMinistryWebsite = () => {
       setGallerySlide((prev) => (prev + 1) % galleryImages.length);
     }, 3000);
 
-    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -109,7 +108,6 @@ const ModernMinistryWebsite = () => {
       { threshold: 0.1, rootMargin: '50px' }
     );
 
-    // Observe sections after loading
     if (!isLoading) {
       const sections = document.querySelectorAll('[data-animate]');
       sections.forEach(section => observer.observe(section));
@@ -145,19 +143,21 @@ const ModernMinistryWebsite = () => {
           }`}
         >
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight animate-slide-up">
-              Welcome to 
-              <span className="bg-gradient-to-r from-red-800 to-red-600 bg-clip-text text-transparent block animate-gradient-x">
-                Piriven and Bhikkhu Education
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight animate-slide-up">
+              Welcome to
+              <span className="block bg-gradient-to-r from-red-500 via-blue-500 to-yellow-400 bg-clip-text text-transparent animate-gradient-x mt-2">
+                Piriven & Bhikkhu Education
               </span>
             </h2>
             <p className="text-gray-600 leading-relaxed text-lg animate-slide-up animation-delay-200">
               The Tripitaka literature states that the word Pirivena has been used since the time of the Buddha to refer to the monastery or hut where the monks lived. Pirivena is a traditional educational institution that has been operating in Sri Lanka for centuries, creating exemplary Bhikkhu leadership through disciplinary practices imposed by the Lord Buddha.
             </p>
             <div className="flex space-x-6 animate-slide-up animation-delay-400">
-              <button className="bg-black hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-full font-semibold transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:rotate-1 active:scale-95">
-                Read More
-              </button>
+              <Link href="/full-explanation">
+                <button className="bg-black hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-full font-semibold transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:rotate-1 active:scale-95">
+                  Read More
+                </button>
+              </Link>
               <button className="bg-orange-500 hover:bg-black text-white px-8 py-4 rounded-full font-semibold transition-all duration-500 transform hover:scale-110 hover:shadow-2xl hover:-rotate-1 active:scale-95">
                 IT Test
               </button>
@@ -168,32 +168,22 @@ const ModernMinistryWebsite = () => {
           </div>
         </section>
 
+
         {/* Stats Section */}
-        <section 
+        <section
           id="stats"
           data-animate
-          className={`py-20 -mx-6 transition-all duration-1000 transform ${
-            sectionsVisible.stats 
-              ? 'translate-y-0 opacity-100' 
-              : 'translate-y-10 opacity-0'
+          className={`py-20 transition-all duration-1000 transform ${
+            sectionsVisible.stats ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 px-6 py-16">
-            <div className="container mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="animate-scale-up"
-                    style={{
-                      animationDelay: `${index * 200}ms`,
-                      animationFillMode: 'both'
-                    }}
-                  >
-                    <StatCard stat={stat} />
-                  </div>
-                ))}
-              </div>
+          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 px-6 py-16 rounded-3xl shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="animate-scale-up" style={{ animationDelay: `${index * 200}ms`, animationFillMode: 'both' }}>
+                  <StatCard stat={stat} />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -413,9 +403,7 @@ const ModernMinistryWebsite = () => {
           }
         }
 
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
-        }
+        
 
         .animate-slide-up {
           animation: slide-up 0.8s ease-out;

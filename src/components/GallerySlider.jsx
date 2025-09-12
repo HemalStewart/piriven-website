@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 export const GallerySlider = ({ galleryImages, gallerySlide, setGallerySlide }) => (
   <div className="space-y-6">
     <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl group">
@@ -31,9 +33,11 @@ export const GallerySlider = ({ galleryImages, gallerySlide, setGallerySlide }) 
       ))}
     </div>
     <div className="text-center">
-      <button className="bg-black hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
-        View More Images
-      </button>
+      <Link href="/gallery">
+        <button className="bg-black hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+          View More Images
+        </button>
+      </Link>
     </div>
   </div>
 );
