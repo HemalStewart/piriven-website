@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Division of Piriven Education",
   description: "Division of Piriven Education",
+  icons: {
+    icon: '/favicon.ico', // This is the path to your favicon file
+  },
 };
 
 export default function RootLayout({
