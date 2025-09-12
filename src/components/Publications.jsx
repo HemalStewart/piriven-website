@@ -11,8 +11,9 @@ export const PublicationsSection = () => (
     */}
     <div className="flex flex-col md:flex-row space-y-4 md:space-x-6">
       {/* First Publication */}
-      <div className="w-full">
-        <a href="#" className="block w-full h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
+      {/* Removed w-full from this div */}
+      <div>
+        <a href="#" className="block h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
           <img 
             src="/images/publications1.jpg" 
             alt="Publication 1" 
@@ -23,8 +24,9 @@ export const PublicationsSection = () => (
       </div>
 
       {/* Second Publication */}
-      <div className="w-full">
-        <a href="#" className="block w-full h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
+      {/* Removed w-full from this div */}
+      <div>
+        <a href="#" className="block h-96 overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group">
           <img 
             src="/images/publications2.jpg" 
             alt="Publication 2" 
