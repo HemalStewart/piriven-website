@@ -87,7 +87,7 @@ const DownloadsPage = () => {
         name: 'පරිවේණාචාර්ය අයදුම් පත්රය 2025',
         url: '/pdfs/පරිවේණාචාර්ය අයදුම් පත්රය 2025.pdf',
         size: '1.1MB',
-        date: 'September 2024',
+        date: 'September 2025',
         department: 'Division of Piriven Education',
         classification: 'පරිවේණාචාර්ය අයදුම් පත්රය'
       },
