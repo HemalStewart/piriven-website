@@ -74,6 +74,25 @@ const DownloadsPage = () => {
       },
     ],
 
+    Applications: [
+      {
+        name: 'පරිවේණාධිපති අයදුම් පත්රය 2025',
+        url: '/pdfs/පරිවේණාධිපති අයදුම් පත්_රය 2025.pdf',
+        size: '1.1MB',
+        date: 'September 2025',
+        department: 'Division of Piriven Education',
+        classification: 'පරිවේණාධිපති අයදුම් පත්රය'
+      },
+      {
+        name: 'පරිවේණාචාර්ය අයදුම් පත්රය 2025',
+        url: '/pdfs/පරිවේණාචාර්ය  අයදුම් පත්_රය 2025.pdf',
+        size: '1.1MB',
+        date: 'September 2024',
+        department: 'Division of Piriven Education',
+        classification: 'පරිවේණාචාර්ය අයදුම් පත්රය'
+      },
+    ],
+
     'Planning and Regulation': [
       {
         name: 'Urban Planning Guidelines for School Zones',
