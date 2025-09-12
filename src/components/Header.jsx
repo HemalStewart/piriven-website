@@ -46,12 +46,13 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             </button>
 
             {/* Logo */}
-            <div className="flex items-center group">
+{/* Logo */}
+<div className="flex items-center group">
   <a href="/">
     <img
       src="/images/logo.png"
       alt="Ministry Logo"
-      className="h-16 w-auto hover:scale-110 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-xl"
+      className="h-12 md:h-16 w-auto hover:scale-110 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-xl"
     />
   </a>
 </div>
