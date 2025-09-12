@@ -77,7 +77,7 @@ const DownloadsPage = () => {
     Applications: [
       {
         name: 'පරිවේණාධිපති අයදුම් පත්රය 2025',
-        url: '/pdfs/පරිවේණාධිපති අයදුම් පත්_රය 2025.pdf',
+        url: '/pdfs/පරිවේණාධිපති අයදුම් පත්රය 2025.pdf',
         size: '1.1MB',
         date: 'September 2025',
         department: 'Division of Piriven Education',
@@ -85,7 +85,7 @@ const DownloadsPage = () => {
       },
       {
         name: 'පරිවේණාචාර්ය අයදුම් පත්රය 2025',
-        url: '/pdfs/පරිවේණාචාර්ය  අයදුම් පත්_රය 2025.pdf',
+        url: '/pdfs/පරිවේණාචාර්ය අයදුම් පත්රය 2025.pdf',
         size: '1.1MB',
         date: 'September 2024',
         department: 'Division of Piriven Education',
