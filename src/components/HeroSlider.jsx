@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState, useCallback } from 'react';
 
 export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
@@ -144,7 +146,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
                   {/* Call-to-Action Buttons */}
                   <div className="overflow-hidden">
                     <div 
-                      className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 ease-out ${
+                      className={`flex justify-start transition-all duration-1000 ease-out ${
                         isActive 
                           ? 'transform translate-y-0 opacity-100' 
                           : 'transform translate-y-10 opacity-0'
