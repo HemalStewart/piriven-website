@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useState, useCallback } from 'react';
 
 export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
@@ -32,7 +30,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
 
   return (
     <section 
-      className="relative h-[450px] md:h-[550px] overflow-hidden bg-gray-900"
+      className="relative h-[600px] overflow-hidden bg-gray-900"
       onMouseMove={handleMouseMove}
     >
       {/* Slide Content */}
@@ -60,7 +58,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
             {/* Background with Subtle Parallax */}
             <div className="absolute inset-0 overflow-hidden">
               <div
-                className="absolute inset-0 w-[110%] h-[110%] -left-[5%] -top-[5%]" // Restored for parallax and full cover
+                className="absolute inset-0 w-[110%] h-[110%] -left-[5%] -top-[5%]"
                 style={{
                   transform: isActive 
                     ? `translate(${parallaxX * 0.2}px, ${parallaxY * 0.2}px) scale(1)` 
@@ -71,7 +69,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
                 <img 
                   src={slide.image} 
                   alt={slide.title}
-                  className="w-full h-full object-cover" // Reverted to object-cover
+                  className="w-full h-full object-cover"
                   style={{
                     filter: isActive 
                       ? 'brightness(0.75) contrast(1.1)' 
@@ -146,7 +144,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
                   {/* Call-to-Action Buttons */}
                   <div className="overflow-hidden">
                     <div 
-                      className={`flex justify-start transition-all duration-1000 ease-out ${
+                      className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 ease-out ${
                         isActive 
                           ? 'transform translate-y-0 opacity-100' 
                           : 'transform translate-y-10 opacity-0'
