@@ -32,7 +32,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
 
   return (
     <section 
-      className="relative h-[600px] overflow-hidden bg-gray-900"
+      className="relative h-[450px] md:h-[550px] overflow-hidden bg-gray-900"
       onMouseMove={handleMouseMove}
     >
       {/* Slide Content */}
@@ -60,7 +60,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
             {/* Background with Subtle Parallax */}
             <div className="absolute inset-0 overflow-hidden">
               <div
-                className="absolute inset-0 w-[110%] h-[110%] -left-[5%] -top-[5%]"
+                className="absolute inset-0 w-[110%] h-[110%] -left-[5%] -top-[5%]" // Restored for parallax and full cover
                 style={{
                   transform: isActive 
                     ? `translate(${parallaxX * 0.2}px, ${parallaxY * 0.2}px) scale(1)` 
@@ -71,7 +71,7 @@ export const HeroSlider = ({ mainSlides, currentSlide, setCurrentSlide }) => {
                 <img 
                   src={slide.image} 
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover" // Reverted to object-cover
                   style={{
                     filter: isActive 
                       ? 'brightness(0.75) contrast(1.1)' 
