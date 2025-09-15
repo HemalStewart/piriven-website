@@ -4,6 +4,7 @@ import React from 'react';
 import { Home, Info, Download, Mail } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { Phone, Globe } from 'lucide-react'; // Import new icons
 
 export const MobileMenu = ({ mobileMenuOpen }) => {
   const pathname = usePathname();
@@ -17,7 +18,6 @@ export const MobileMenu = ({ mobileMenuOpen }) => {
 
   return (
     <div
-      // Use the same background color as the main nav
       className={`md:hidden bg-red-800 shadow-lg transform transition-all duration-500 ease-in-out overflow-hidden ${
         mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
       }`}
@@ -29,7 +29,6 @@ export const MobileMenu = ({ mobileMenuOpen }) => {
           return (
             <li
               key={href}
-              // FIX: Apply animation delay via inline style
               style={{ transitionDelay: `${index * 100}ms` }}
               className={`transform transition-all duration-300 ${
                 mobileMenuOpen
@@ -41,8 +40,8 @@ export const MobileMenu = ({ mobileMenuOpen }) => {
                 href={href}
                 className={`flex w-full items-center space-x-3 px-4 py-3 rounded-lg font-semibold tracking-wider uppercase text-sm transition-colors duration-300 ${
                   active
-                    ? 'bg-red-900/50 text-yellow-300' // Active state: darker red bg, yellow text
-                    : 'text-white hover:bg-red-700/50 hover:text-yellow-300' // Default state
+                    ? 'bg-red-900/50 text-yellow-300'
+                    : 'text-white hover:bg-red-700/50 hover:text-yellow-300'
                 }`}
               >
                 <Icon
@@ -55,6 +54,49 @@ export const MobileMenu = ({ mobileMenuOpen }) => {
             </li>
           );
         })}
+
+        {/* PDMS Link */}
+        <li
+          style={{ transitionDelay: `${navItems.length * 100}ms` }}
+          className={`transform transition-all duration-300 ${
+            mobileMenuOpen
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-y-4'
+          }`}
+        >
+          <a
+            href="https://pdms.moe.gov.lk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center space-x-3 px-4 py-3 rounded-lg font-semibold tracking-wider uppercase text-sm transition-all duration-300 bg-blue-900 text-white hover:bg-blue-700"
+          >
+            <Phone className="w-5 h-5" />
+            <span>PDMS</span>
+          </a>
+        </li>
+
+        {/* Language Switcher */}
+        <li
+          style={{ transitionDelay: `${(navItems.length + 1) * 100}ms` }}
+          className={`transform transition-all duration-300 ${
+            mobileMenuOpen
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-y-4'
+          }`}
+        >
+          <div className="flex w-full items-center space-x-3 px-4 py-3 rounded-lg bg-red-700/50 transition-colors duration-300">
+            <Globe className="w-5 h-5 text-white" />
+            <div className="flex-1 flex justify-evenly">
+              <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
+                සිංහල
+              </button>
+              <div className="h-4 w-px bg-yellow-300"></div>
+              <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
+                English
+              </button>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   );

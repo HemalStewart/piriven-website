@@ -83,8 +83,10 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <h1 className="text-gray-800 font-bold hover:text-transparent hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-500 hover:bg-clip-text text-xl transition-all duration-500 cursor-pointer transform hover:scale-105">
-                PDMS
+              <h1 className="text-gray-800 font-bold text-xl transition-all duration-500 cursor-pointer transform hover:scale-105">
+                <span className=" text-blue-900 hover:text-transparent hover:border-blue-700 hover:bg-gradient-to-r hover:from-blue-800 hover:to-cyan-700 hover:bg-clip-text">
+                  PDMS
+                </span>
               </h1>
             </a>
           </div>

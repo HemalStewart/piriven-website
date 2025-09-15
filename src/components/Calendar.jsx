@@ -8,13 +8,13 @@ dayjs.extend(isBetween);
 
 // Dummy news data
 const DUMMY_EVENTS = [
-  { date: '2025-09-05', title: 'Tech Conference' },
-  { date: '2025-09-12', title: 'Product Launch' },
-  { date: '2025-09-18', title: 'Company Meeting' },
-  { date: '2025-09-25', title: 'Team Building Day' },
-  { date: '2025-10-02', title: 'Q4 Planning Session' },
-  { date: '2025-10-15', title: 'Marketing Workshop' },
-  { date: '2025-11-10', title: 'Annual Holiday Party' },
+  // { date: '2025-09-05', title: 'Tech Conference' },
+  // { date: '2025-09-12', title: 'Product Launch' },
+  // { date: '2025-09-18', title: 'Company Meeting' },
+  // { date: '2025-09-25', title: 'Team Building Day' },
+  // { date: '2025-10-02', title: 'Q4 Planning Session' },
+  // { date: '2025-10-15', title: 'Marketing Workshop' },
+  // { date: '2025-11-10', title: 'Annual Holiday Party' },
 ];
 
 export const CalendarComponent = () => {
