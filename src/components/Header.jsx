@@ -89,7 +89,7 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
               href="https://pdms.moe.gov.lk/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg font-bold text-gray-800 hover:text-red-500 transition-colors duration-300"
+              className="text-lg font-bold text-gray-800 hover:text-red-800 transition-colors duration-300"
             >
               PDMS
             </Link>
