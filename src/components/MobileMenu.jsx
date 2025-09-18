@@ -1,103 +1,107 @@
 'use client';
 
 import React from 'react';
-import { Home, Info, Download, Mail } from 'lucide-react';
+import { Home, Info, Download, Mail, Phone, Globe } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Phone, Globe } from 'lucide-react'; // Import new icons
 
 export const MobileMenu = ({ mobileMenuOpen }) => {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', label: 'HOME', Icon: Home },
-    { href: '/about', label: 'ABOUT US', Icon: Info },
-    { href: '/downloads', label: 'DOWNLOADS', Icon: Download },
-    { href: '/contact', label: 'CONTACT US', Icon: Mail },
+    { href: '/', label: 'HOME' }, // Removed Icon
+    { href: '/about', label: 'ABOUT US' }, // Removed Icon
+    { href: '/downloads', label: 'DOWNLOADS' }, // Removed Icon
+    { href: '/contact', label: 'CONTACT US' }, // Removed Icon
   ];
 
   return (
     <div
-      className={`md:hidden bg-red-800 shadow-lg transform transition-all duration-500 ease-in-out overflow-hidden ${
-        mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      className={`fixed inset-0 top-16 z-40 md:hidden backdrop-blur-sm transition-all duration-300 ease-in-out ${
+        mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}
     >
-      <ul className="flex flex-col space-y-2 p-4">
-        {navItems.map(({ href, label, Icon }, index) => {
-          const active = pathname === href;
+      <div
+        className={`bg-red-800 p-6 shadow-xl w-full h-full transform transition-transform duration-500 ease-in-out ${
+          mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <ul className="flex flex-col space-y-2">
+          {navItems.map(({ href, label }, index) => {
+            const active = pathname === href;
 
-          return (
-            <li
-              key={href}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              className={`transform transition-all duration-300 ${
-                mobileMenuOpen
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 -translate-y-4'
-              }`}
-            >
-              <Link
-                href={href}
-                className={`flex w-full items-center space-x-3 px-4 py-3 rounded-lg font-semibold tracking-wider uppercase text-sm transition-colors duration-300 ${
-                  active
-                    ? 'bg-red-900/50 text-yellow-300'
-                    : 'text-white hover:bg-red-700/50 hover:text-yellow-300'
+            return (
+              <li
+                key={href}
+                style={{ transitionDelay: `${index * 50}ms` }}
+                className={`transform transition-all duration-300 ease-in-out ${
+                  mobileMenuOpen
+                    ? 'opacity-100 translate-x-0'
+                    : 'opacity-0 -translate-x-4'
                 }`}
               >
-                <Icon
-                  className={`w-5 h-5 transition-transform duration-300 ${
-                    active ? 'scale-110' : ''
+                <Link
+                  href={href}
+                  className={`flex w-full items-center space-x-4 px-4 py-3 rounded-xl text-lg font-semibold transition-colors duration-300 ${
+                    active
+                      ? 'bg-red-900/50 text-yellow-300'
+                      : 'text-white hover:bg-red-700/50 hover:text-yellow-300'
                   }`}
-                />
-                <span>{label}</span>
-              </Link>
-            </li>
-          );
-        })}
+                >
+                  {/* Icons are now removed from these links */}
+                  <span>{label}</span>
+                </Link>
+              </li>
+            );
+          })}
 
-        {/* PDMS Link */}
-        <li
-          style={{ transitionDelay: `${navItems.length * 100}ms` }}
-          className={`transform transition-all duration-300 ${
-            mobileMenuOpen
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-4'
-          }`}
-        >
-          <a
-            href="https://pdms.moe.gov.lk/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center space-x-3 px-4 py-3 rounded-lg font-semibold tracking-wider uppercase text-sm transition-all duration-300 bg-blue-900 text-white hover:bg-blue-700"
+          {/* Separator */}
+          <div className="h-px bg-red-700 my-4"></div>
+
+          {/* Utility Links (these still have icons, as is the standard pattern) */}
+          <li
+            style={{ transitionDelay: `${navItems.length * 50}ms` }}
+            className={`transform transition-all duration-300 ease-in-out ${
+              mobileMenuOpen
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 -translate-x-4'
+            }`}
           >
-            <Phone className="w-5 h-5" />
-            <span>PDMS</span>
-          </a>
-        </li>
+            <Link
+              href="https://pdms.moe.gov.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center space-x-4 px-4 py-3 rounded-xl text-lg font-semibold transition-colors duration-300 bg-red-700/50 text-white hover:bg-red-600/50 hover:text-yellow-300"
+            >
+              <Phone className="w-6 h-6 text-white" />
+              <span>PDMS</span>
+            </Link>
+          </li>
 
-        {/* Language Switcher */}
-        <li
-          style={{ transitionDelay: `${(navItems.length + 1) * 100}ms` }}
-          className={`transform transition-all duration-300 ${
-            mobileMenuOpen
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-4'
-          }`}
-        >
-          <div className="flex w-full items-center space-x-3 px-4 py-3 rounded-lg bg-red-700/50 transition-colors duration-300">
-            <Globe className="w-5 h-5 text-white" />
-            <div className="flex-1 flex justify-evenly">
-              <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
-                සිංහල
-              </button>
-              <div className="h-4 w-px bg-yellow-300"></div>
-              <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
-                English
-              </button>
+          {/* Language Switcher */}
+          <li
+            style={{ transitionDelay: `${(navItems.length + 1) * 50}ms` }}
+            className={`transform transition-all duration-300 ease-in-out ${
+              mobileMenuOpen
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 -translate-x-4'
+            }`}
+          >
+            <div className="flex w-full items-center space-x-4 px-4 py-3 rounded-xl bg-red-700/50">
+              <Globe className="w-6 h-6 text-white" />
+              <div className="flex-1 flex justify-evenly">
+                <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
+                  සිංහල
+                </button>
+                <div className="h-4 w-px bg-yellow-300"></div>
+                <button className="text-sm font-semibold text-white hover:text-yellow-300 transition-colors duration-300">
+                  English
+                </button>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

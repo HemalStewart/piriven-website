@@ -128,10 +128,11 @@ const ModernMinistryWebsite = () => {
         setMobileMenuOpen={setMobileMenuOpen} 
       />
       <MobileMenu mobileMenuOpen={mobileMenuOpen} />
-      <HeroSlider mainSlides={mainSlides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} />
       <MainNavigation />
+      <HeroSlider mainSlides={mainSlides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} />
       
-      <main className="container mx-auto px-6 py-16">
+      
+      <main className="container mx-auto px-6 pt-24 pb-16 md:pt-32">
         {/* Welcome Section */}
         <section 
           id="welcome"
@@ -144,8 +145,9 @@ const ModernMinistryWebsite = () => {
         >
           <div className="space-y-8">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight animate-slide-up">
-              Welcome to
               <span className="block bg-gradient-to-r from-red-500 via-blue-500 to-yellow-400 bg-clip-text text-transparent animate-gradient-x mt-2">
+              Welcome to
+              
                 Piriven & Bhikkhu Education
               </span>
             </h2>
