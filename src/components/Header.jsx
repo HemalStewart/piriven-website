@@ -16,7 +16,7 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
           {/* Left - Mobile Menu */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-gray-700 hover:text-red-500 transition-colors duration-300 active:scale-95"
+            className="p-2 rounded-lg text-gray-700 hover:text-red-800 transition-colors duration-300 active:scale-95"
           >
             <div className="relative w-6 h-6">
               <Menu
@@ -46,7 +46,7 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
           {/* Right - Mobile Search */}
           <button
             onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="p-2 rounded-lg text-gray-700 hover:text-red-500 transition-colors duration-300 active:scale-95"
+            className="p-2 rounded-lg text-gray-700 hover:text-red-800 transition-colors duration-300 active:scale-95"
           >
             <Search className="w-5 h-5" />
           </button>
@@ -62,7 +62,7 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full px-4 py-2 text-gray-800 border-gray-300 border rounded-lg text-sm focus:outline-none focus:border-red-500"
+              className="w-full px-4 py-2 text-gray-800 border-gray-300 border rounded-lg text-sm focus:outline-none focus:border-red-800"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
@@ -100,11 +100,11 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             {/* Language Switcher */}
             <div className="flex items-center space-x-3 text-gray-600 font-medium">
               <Globe className="w-4 h-4 text-gray-500" />
-              <button className="text-sm hover:text-red-500 transition-colors duration-200">
+              <button className="text-sm hover:text-red-800 transition-colors duration-200">
                 සිංහල
               </button>
               <span className="text-gray-400">|</span>
-              <button className="text-sm hover:text-red-500 transition-colors duration-200">
+              <button className="text-sm hover:text-red-800 transition-colors duration-200">
                 English
               </button>
             </div>
@@ -118,13 +118,13 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                 onChange={(e) => setSearchValue(e.target.value)}
                 onFocus={() => setIsSearchOpen(true)}
                 onBlur={() => setIsSearchOpen(false)}
-                className={`border-b text-gray-800 border-gray-300 py-1 transition-all duration-300 text-sm focus:outline-none focus:border-red-500 ${
+                className={`border-b text-gray-800 border-gray-300 py-1 transition-all duration-300 text-sm focus:outline-none focus:border-red-800 ${
                   isSearchOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'
                 }`}
               />
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-1 rounded-full text-gray-700 hover:text-red-500 transition-colors duration-300 active:scale-95"
+                className="p-1 rounded-full text-gray-700 hover:text-red-800 transition-colors duration-300 active:scale-95"
               >
                 <Search className="w-5 h-5" />
               </button>

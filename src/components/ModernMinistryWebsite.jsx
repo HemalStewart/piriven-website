@@ -132,7 +132,7 @@ const ModernMinistryWebsite = () => {
       <HeroSlider mainSlides={mainSlides} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide} />
       
       
-      <main className="container mx-auto px-6 pt-24 pb-16 md:pt-32">
+      <main className="container mx-auto px-6 md:px-6 lg:px-12 py-16">
         {/* Welcome Section */}
         <section 
           id="welcome"
