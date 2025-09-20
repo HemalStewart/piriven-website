@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { Search, Menu, X, Globe } from 'lucide-react';
 
 export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <header className="bg-white">
+    <header className="relative z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
-        {/* ✅ Mobile Layout */}
+        {/* Mobile Layout */}
         <div className="flex items-center justify-between md:hidden">
           {/* Left - Mobile Menu */}
           <button
@@ -45,17 +46,17 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
 
           {/* Right - Mobile Search */}
           <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
             className="p-2 rounded-lg text-gray-700 hover:text-red-800 transition-colors duration-300 active:scale-95"
           >
             <Search className="w-5 h-5" />
           </button>
         </div>
         
-        {/* Mobile Search Input */}
+        {/* Mobile Search Input (toggled) */}
         <div
           className={`md:hidden mt-4 transition-all duration-300 ease-in-out overflow-hidden ${
-            isSearchOpen ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'
+            isMobileSearchOpen ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="relative">
@@ -70,7 +71,7 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
           </div>
         </div>
 
-        {/* ✅ Desktop Layout */}
+        {/* Desktop Layout */}
         <div className="hidden md:flex justify-between items-center">
           {/* Left - Logo */}
           <div className="flex items-center">
@@ -95,16 +96,20 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             </Link>
           </div>
 
-          {/* Right - Language + Search */}
+          {/* Right - Language & Search */}
           <div className="flex items-center space-x-6">
             {/* Language Switcher */}
             <div className="flex items-center space-x-3 text-gray-600 font-medium">
               <Globe className="w-4 h-4 text-gray-500" />
-              <button className="text-sm hover:text-red-800 transition-colors duration-200">
+              <button
+                className="text-sm cursor-pointer hover:text-red-800 transition-colors duration-200"
+              >
                 සිංහල
               </button>
               <span className="text-gray-400">|</span>
-              <button className="text-sm hover:text-red-800 transition-colors duration-200">
+              <button
+                className="text-sm cursor-pointer hover:text-red-800 transition-colors duration-200"
+              >
                 English
               </button>
             </div>
@@ -116,38 +121,43 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                 placeholder="Search..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                onFocus={() => setIsSearchOpen(true)}
-                onBlur={() => setIsSearchOpen(false)}
-                className={`border-b text-gray-800 border-gray-300 py-1 transition-all duration-300 text-sm focus:outline-none focus:border-red-800 ${
-                  isSearchOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'
+                onFocus={() => setIsDesktopSearchOpen(true)}
+                onBlur={() => setIsDesktopSearchOpen(false)}
+                className={`border-b-2 bg-transparent py-2 text-sm font-light tracking-wide transition-all duration-300 focus:outline-none ${
+                  isDesktopSearchOpen
+                    ? 'border-red-800 text-black placeholder-red-800/60 w-64 pr-8'
+                    : 'border-gray-200 text-gray-700 placeholder-gray-400 w-48 hover:border-black'
                 }`}
               />
-              <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-1 rounded-full text-gray-700 hover:text-red-800 transition-colors duration-300 active:scale-95"
-              >
-                <Search className="w-5 h-5" />
-              </button>
-              {isSearchOpen && searchValue && (
-                <div className="absolute top-full right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden animate-fade-in-down">
-                  <div className="p-3">
-                    <p className="text-gray-500 text-xs mb-2">Search suggestions</p>
-                    <Link href={`/search?q=${searchValue}-pirivenas`}>
-                      <div className="flex items-center space-x-2 p-2 hover:bg-red-50 rounded-lg cursor-pointer transition-colors duration-200">
-                        <Search className="w-4 h-4 text-red-400" />
-                        <span className="text-gray-700 text-sm">
-                          {searchValue} - Pirivenas
-                        </span>
-                      </div>
-                    </Link>
-                    <Link href={`/search?q=${searchValue}-education`}>
-                      <div className="flex items-center space-x-2 p-2 hover:bg-red-50 rounded-lg cursor-pointer transition-colors duration-200">
-                        <Search className="w-4 h-4 text-red-400" />
-                        <span className="text-gray-700 text-sm">
-                          {searchValue} - Education
-                        </span>
-                      </div>
-                    </Link>
+              <Search
+                className={`absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 transition-all duration-300 ${
+                  searchValue || isDesktopSearchOpen ? 'text-red-800' : 'text-gray-400'
+                }`}
+              />
+              {isDesktopSearchOpen && searchValue && (
+                <div className="absolute top-full right-0 mt-3 w-80 bg-white shadow-xl border-l-2 border-red-800 overflow-hidden animate-slide-down">
+                  <div className="p-4">
+                    <p className="text-red-800 text-xs font-medium tracking-wide uppercase mb-3">
+                      Search Results
+                    </p>
+                    <div className="space-y-1">
+                      <Link href={`/search?q=${searchValue}-pirivenas`}>
+                        <div className="flex items-center space-x-3 p-3 hover:bg-yellow-300/20 cursor-pointer transition-all duration-200 group border-l-2 border-transparent hover:border-red-800">
+                          <Search className="w-4 h-4 text-red-800 group-hover:scale-110 transition-transform duration-200" />
+                          <span className="text-gray-700 text-sm font-light">
+                            {searchValue} - Pirivenas
+                          </span>
+                        </div>
+                      </Link>
+                      <Link href={`/search?q=${searchValue}-education`}>
+                        <div className="flex items-center space-x-3 p-3 hover:bg-yellow-300/20 cursor-pointer transition-all duration-200 group border-l-2 border-transparent hover:border-red-800">
+                          <Search className="w-4 h-4 text-red-800 group-hover:scale-110 transition-transform duration-200" />
+                          <span className="text-gray-700 text-sm font-light">
+                            {searchValue} - Education
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -156,18 +166,18 @@ export const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
         </div>
       </div>
       <style jsx>{`
-        @keyframes fade-in-down {
+        @keyframes slide-down {
           from {
             opacity: 0;
-            transform: translateY(-10px);
+            transform: translateY(-8px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        .animate-fade-in-down {
-          animation: fade-in-down 0.3s ease-out;
+        .animate-slide-down {
+          animation: slide-down 0.3s ease-out;
         }
       `}</style>
     </header>
